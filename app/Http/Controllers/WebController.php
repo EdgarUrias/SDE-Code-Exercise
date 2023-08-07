@@ -12,7 +12,7 @@ class WebController extends Controller
      *
      * This function is used to process the SS request.
      *
-     * return json
+     * @return json
      */
     public function requestSS(Request $request){
 

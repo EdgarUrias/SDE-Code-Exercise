@@ -13,7 +13,7 @@ class OperationController extends Controller
      *@param $addresses array
      *@param $drivers array
      *
-     * return collection
+     * @return collection
      */
     public function processSS($addresses, $drivers){
 
@@ -87,12 +87,13 @@ class OperationController extends Controller
      * @param $streetLen
      * @param $driverLen
      *
-     * return bool
+     * @return bool
      */
     private function hasCommonFactors($streetLen, $driverLen)
     {
         //get the minimum of the two numbers
         $min = min($streetLen, $driverLen);
+        //loop to search the common factors of the two numbers more than 1
         for ($i = 2; $i <= $min; $i++) {
             if ($streetLen % $i === 0 && $driverLen % $i === 0) {
                 return true;
