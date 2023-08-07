@@ -31,6 +31,28 @@ class AssignShipments extends Command
         $addressesFile = $this->argument('addressesFile');
         $driversFile = $this->argument('driversFile');
 
+        // Validate file extension
+        if (!$this->validateFileExtension($addressesFile, 'txt')) {
+            $this->error("Invalid destinations file format: $addressesFile. Only .txt files are allowed.");
+            return;
+        }
+
+        if (!$this->validateFileExtension($driversFile, 'txt')) {
+            $this->error("Invalid drivers file format: $driversFile. Only .txt files are allowed.");
+            return;
+        }
+
+        // Check if the files exist and are readable
+        if (!file_exists($addressesFile) || !is_readable($addressesFile)) {
+            $this->error("Invalid destinations file: $addressesFile");
+            return;
+        }
+
+        if (!file_exists($driversFile) || !is_readable($driversFile)) {
+            $this->error("Invalid drivers file: $driversFile");
+            return;
+        }
+
         //create an array of every line in the addresses file
         $addresses = file($addressesFile, FILE_IGNORE_NEW_LINES);
 
@@ -50,5 +72,17 @@ class AssignShipments extends Command
             $this->line("$address => $driver");
         }
 
+    }
+
+    /**
+     * validate file extension
+     *
+     * @param string $filename
+     * @param string $expectedExtension
+     */
+    private function validateFileExtension($filename, $expectedExtension)
+    {
+        $fileExtension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        return $fileExtension === $expectedExtension;
     }
 }
