@@ -22,14 +22,15 @@
                 <div class="card-body">
                     <h2>SDE Code Exercise</h2>
                     <form action="#" id="form" enctype="multipart/form-data">
+
                         @csrf
-                        <div class="mb-3">
-                            <label for="drivers" class="form-label">Select the drivers list.</label>
-                            <input class="form-control" type="file" id="drivers" name="drivers">
-                        </div>
                         <div class="mb-3">
                             <label for="addresses" class="form-label">Select the addresses list.</label>
                             <input class="form-control" type="file" id="addresses" name="addresses">
+                        </div>
+                        <div class="mb-3">
+                            <label for="drivers" class="form-label">Select the drivers list.</label>
+                            <input class="form-control" type="file" id="drivers" name="drivers">
                         </div>
                         <button class="btn btn-success" type="button" id="sendForm">Calculate</button>
 
